@@ -1,25 +1,45 @@
-import { ChangeEvent, useState, useCallback } from 'react'
-import Demo from './components/Demo'
+import { lazy, Suspense } from 'react'
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+
+const HomePage = lazy(() => import('./pages/HomePage'))
+const LoginPage = lazy(() => import('./pages/LoginPage'))
+const ProfilePage = lazy(() => import('./pages/ProfilePage'))
 
 export default function App() {
-  const [name, setName] = useState('')
-  const [modeLight, setModeLight] = useState(false)
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setName(event.target.value)
-  }
-  const handleSwitch = useCallback(() => {
-    return setModeLight((curr) => !curr)
-  }, [])
-
-  const handleSendData = useCallback(() => {
-    return console.log('sending data')
-  }, [])
-
   return (
     <div>
-      <h2>{modeLight ? '🌞' : '🌚'}</h2>
-      <input onChange={handleChange} value={name} type="text" />
-      <Demo handleSendData={handleSendData} />
+      <BrowserRouter>
+        <div>
+          <nav>
+            <ul className="flex gap-2">
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/profile">Profile</Link>
+              </li>
+              <li>
+                <Link to="/login">Login</Link>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <Suspense
+          fallback={
+            <div>
+              <h2>
+                <p>Loading 😏</p>
+              </h2>
+            </div>
+          }
+        >
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/login" element={<LoginPage />} />
+          </Routes>
+        </Suspense>
+      </BrowserRouter>
     </div>
   )
 }
