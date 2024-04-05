@@ -4,7 +4,7 @@ type LayoutProps = {
 
 export default function Layout({ children }: LayoutProps) {
   return (
-    <div className="mx-auto w-[1200px] bg-slate-600 min-h-screen">
+    <div className="mx-auto w-[1200px] max-w-full min-h-screen bg-white">
       {children}
     </div>
   )
