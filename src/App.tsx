@@ -1,5 +1,6 @@
 import { lazy, Suspense } from 'react'
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import AddProductPage from './pages/AddProductsPage'
 
 const HomePage = lazy(() => import('./pages/HomePage'))
 const LoginPage = lazy(() => import('./pages/LoginPage'))
@@ -17,6 +18,9 @@ export default function App() {
               </li>
               <li>
                 <Link to="/profile">Profile</Link>
+              </li>
+              <li>
+                <Link to="/add-product">Add Product</Link>
               </li>
               <li>
                 <Link to="/login">Login</Link>
@@ -37,6 +41,7 @@ export default function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/add-product" element={<AddProductPage />} />
           </Routes>
         </Suspense>
       </BrowserRouter>
