@@ -1,5 +1,5 @@
+import { useQuery, useQueryClient } from 'react-query'
 import ProductPreview from './ProductPreview'
-import { useFetchProducts } from '../hooks/useFetchProducts'
 
 export type Product = {
   id: number
@@ -11,15 +11,30 @@ export type Product = {
 }
 
 export default function ProductsList() {
-  const [products, isLoading] = useFetchProducts()
-
+  const { isLoading, error, data } = useQuery<Product[], string>(
+    'getProducts',
+    () => {
+      return fetch(
+        'https://uxonyqlchonyeukyqerd.supabase.co/rest/v1/products?select=*',
+        {
+          method: 'GET',
+          headers: {
+            apiKey: `${import.meta.env.VITE_SUPABASE_KEY}`,
+            Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_KEY}`,
+          },
+        }
+      ).then((response) => response.json())
+    }
+  )
   return (
     <div>
       <div className="grid gap-2 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {isLoading ? <h2>Loading</h2> : null}
-        {products.map((product) => (
-          <ProductPreview key={product.id} product={product} />
-        ))}
+        {error ? <h2>There was an error trying to fetch products</h2> : null}
+        {data &&
+          data.map((product) => (
+            <ProductPreview key={product.id} product={product} />
+          ))}
       </div>
     </div>
   )
