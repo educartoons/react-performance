@@ -28,7 +28,7 @@ export default function AddProduct() {
         {
           method: 'POST',
           headers: {
-            apiKey: `${import.meta.env.VITE_SUPABASE_KEY}`,
+            apiKey: import.meta.env.VITE_SUPABASE_KEY,
             Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_KEY}`,
             'Content-Type': 'application/json',
             Prefer: 'return=minimal',
