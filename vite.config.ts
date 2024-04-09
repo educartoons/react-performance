@@ -9,4 +9,7 @@ export default defineConfig({
   test: {
     environment: 'happy-dom',
   },
+  define: {
+    __APP_ENV__: process.env.VITE_VERCEL_ENV,
+  },
 })
