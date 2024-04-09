@@ -1,7 +1,6 @@
 import { ChangeEvent, useState, MouseEvent } from 'react'
 import { Product } from './ProductsList'
 import Input from './Input'
-import 'vite/client'
 
 type NewProduct = Omit<Product, 'created_at' | 'id'>
 
