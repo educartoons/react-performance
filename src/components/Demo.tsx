@@ -1,4 +1,4 @@
-import { useState, useMemo, memo } from 'react'
+import { useState, memo } from 'react'
 import { initialItems } from '../utils'
 
 type DemoProps = {

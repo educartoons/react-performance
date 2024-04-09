@@ -70,7 +70,7 @@ export default function AddProduct() {
           Price
         </label>
         <Input
-          value={product.price}
+          value={String(product.price)}
           name="price"
           placeholder="Product Price"
           onChange={handleChange}
