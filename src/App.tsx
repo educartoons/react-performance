@@ -5,6 +5,7 @@ import AddProductPage from './pages/AddProduct'
 const HomePage = lazy(() => import('./pages/HomePage'))
 const LoginPage = lazy(() => import('./pages/LoginPage'))
 const ProfilePage = lazy(() => import('./pages/ProfilePage'))
+const SignUp = lazy(() => import('./pages/SignUp'))
 
 export default function App() {
   return (
@@ -21,6 +22,9 @@ export default function App() {
               </li>
               <li>
                 <Link to="/profile">Profile</Link>
+              </li>
+              <li>
+                <Link to="/signup">Sign up</Link>
               </li>
               <li>
                 <Link to="/login">Login</Link>
@@ -41,6 +45,7 @@ export default function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/add-product" element={<AddProductPage />} />
+            <Route path="/signup" element={<SignUp />} />
             <Route path="/login" element={<LoginPage />} />
           </Routes>
         </Suspense>

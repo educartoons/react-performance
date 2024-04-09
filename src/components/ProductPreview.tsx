@@ -6,7 +6,7 @@ type ProductPreviewProps = {
 
 export default function ProductPreview({ product }: ProductPreviewProps) {
   return (
-    <div className="mb-4">
+    <div role="listitem" className="mb-4">
       <figure>
         <img src={product.image} alt="" />
       </figure>
