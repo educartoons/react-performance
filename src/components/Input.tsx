@@ -5,6 +5,7 @@ type InputProps = {
   onChange: (event: ChangeEvent<HTMLInputElement>) => void
   value: string
   placeholder: string
+  type?: string
 } & InputHTMLAttributes<HTMLInputElement>
 
 export default function Input({
@@ -12,12 +13,13 @@ export default function Input({
   onChange,
   value,
   placeholder,
+  type,
 }: InputProps) {
   return (
     <input
       value={value}
       onChange={onChange}
-      type="text"
+      type={type || 'text'}
       id={name}
       name={name}
       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"

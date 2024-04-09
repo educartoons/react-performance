@@ -6,8 +6,16 @@ import AddProductPage from './pages/AddProduct'
 const HomePage = lazy(() => import('./pages/HomePage'))
 const LoginPage = lazy(() => import('./pages/LoginPage'))
 const ProfilePage = lazy(() => import('./pages/ProfilePage'))
+const SignUpPage = lazy(() => import('./pages/SignUpPage'))
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      cacheTime: 1000 * 60 * 60 * 24,
+      staleTime: 1000 * 60 * 10,
+    },
+  },
+})
 
 export default function App() {
   return (
@@ -27,7 +35,10 @@ export default function App() {
                   <Link to="/profile">Profile</Link>
                 </li>
                 <li>
-                  <Link to="/login">Login</Link>
+                  <Link to="/login">Log in</Link>
+                </li>
+                <li>
+                  <Link to="/signup">Sign up</Link>
                 </li>
               </ul>
             </nav>
@@ -46,6 +57,7 @@ export default function App() {
               <Route path="/profile" element={<ProfilePage />} />
               <Route path="/add-product" element={<AddProductPage />} />
               <Route path="/login" element={<LoginPage />} />
+              <Route path="/signup" element={<SignUpPage />} />
             </Routes>
           </Suspense>
         </BrowserRouter>

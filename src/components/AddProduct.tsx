@@ -4,6 +4,10 @@ import Input from './Input'
 
 type NewProduct = Omit<Product, 'created_at' | 'id'>
 
+const getAuthToken = () => {
+  return localStorage.getItem('supabase.auth.token')
+}
+
 export default function AddProduct() {
   const [product, setProduct] = useState<NewProduct>({
     name: '',
@@ -29,7 +33,7 @@ export default function AddProduct() {
           method: 'POST',
           headers: {
             apiKey: import.meta.env.VITE_SUPABASE_KEY,
-            Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_KEY}`,
+            Authorization: `Bearer ${getAuthToken()}`,
             'Content-Type': 'application/json',
             Prefer: 'return=minimal',
           },
